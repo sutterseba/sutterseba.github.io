@@ -100,7 +100,7 @@
                         }
 
                         if (bip39.validateMnemonic(input)) {
-                            output.innerHTML = '<div class="valid">ALREADY VALID</div><div class="note">You entered a valid ' + input.split(' ').length + ' word mnemonic</div>';
+                            output.innerHTML = '<div class="valid">ALREADY VALID</div><div class="note">You entered a valid ' + input.split(' ').length + ' word mnemonic</div><br><br><br>';
                             return;
                         }
 
@@ -111,17 +111,18 @@
                         });
 
                         if (valid.length > 0) {
-                            output.innerHTML = "<div class='valid'>CHOOSE ANY OF THESE WORDS</div><div class='note'>to complete your " + (input.split(" ").length + 1) + " word mnemonic</div><br>";
+                            output.innerHTML ='<div class="valid">CHOOSE ANY OF THESE WORDS</div><div class="note">to complete your ' + (input.split(' ').length + 1) + ' word mnemonic</div>';
                             
                             valid.forEach(function (word) {
-                                output.innerHTML += word + ", ";
+                                output.innerHTML += word + ', ';
                             });
 
                             output.innerHTML = output.innerHTML.slice(0, -2);
+                            output.innerHTML += '<br><br><br>';
                             return;
                         }
 
-                        output.innerHTML = "<div class='invalid'>INVALID INPUT</div><div class='note'>Check for spelling mistakes or incorrect amount of words</div>";
+                        output.innerHTML = '<div class="invalid">INVALID INPUT</div><div class="note">Check for spelling mistakes or incorrect amount of words</div><br><br><br>';
                     });
                 };
 
