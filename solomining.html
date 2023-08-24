@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Solo Mining Calculator</title>
+    <meta name="title" content="suttersebastian.com">
+    <meta name="description" content="Calculate (how low) your chances are of finding a valid bitcoin block">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="pics/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="pics/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="pics/favicon-16x16.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        @media (max-width: 700px) {
+            .mobile-width {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="m-5">
+    <h1 class="font-weight-bold">Solo Mining Calculator <small class="text-muted">(Untested)</small></h1>
+
+    <div class="text-muted mt-4">
+        Calculate your chances for finding a valid bitcoin block when using common lottery mining hardware.<br>
+        Current (average) hashrate used for calculations is taken from the <a href="https://mempool.space/docs/api/rest#get-hashrate" target="_blank">mempool.space API</a> and is updated locally on each page refresh.
+    </div>
+
+    <div class="mt-4"><span class="font-weight-bold">Current network hashrate: </span><span id="hashrate-target" class="text-muted"></span>&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="Yesterdays average hashrate discounts real-time fluctuations while still being up to date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></span></div>
+
+    <div class="mt-4">
+        <div id="presets">
+            <label for="preset"><strong>Choose from a preset</strong></label>
+            <select class="form-control w-25 mobile-width" id="preset">
+                <option value="default" selected>None</option>
+                <option value="nerdminer">NerdMiner (45 KH/s)</option>
+                <option value="u2plus">Antminer U2+ (2 GH/s)</option>
+                <option value="marslander">Mars Lander (300 GH/s)</option>
+                <option value="s9">Antminer S9 (13.5 TH/s)</option>
+                <option value="s19pro">Antminer S19 Pro (110 TH/s)</option>
+            </select>
+        </div>
+
+        <label for="unit" class="font-weight-bold mt-2">Select hashrate unit</label>
+        <select class="form-control w-25 mobile-width" id="unit">
+            <option value="0">Hash (H/s)</option>
+            <option value="1">Kilohash (KH/s)</option>
+            <option value="2">Megahash (MH/s)</option>
+            <option value="3">Gigahash (GH/s)</option>
+            <option value="4" selected>Terahash (TH/s)</option>
+            <option value="5">Petahash (PH/s)</option>
+        </select>
+
+        <label for="hashratelocal" class="mt-2 font-weight-bold">Your local hashrate</label>
+        <input type="number" class="form-control w-25 mobile-width" id="hashratelocal" min="1" value="21" required>
+
+        <label for="uptime" class="mt-2"><strong>Uptime</strong> (out of 24 hours)</label>
+        <input type="number" class="form-control w-25" id="uptime" value="24" max="24" min="1" required>
+
+        <label for="lifeexpectancy" class="mt-2"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <input type="number" class="form-control w-25" id="lifeexpectancy" value="72" max="200" min="1" required>
+
+        <label for="expectedincrease" class="mt-2"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <input type="number" class="form-control w-25" id="expectedincrease" value="1" max="200" min="1" required>
+
+        
+        <button type="button" id="calculate" class="mt-4 btn btn-success font-weight-bold">Calculate</button>
+    </div>
+
+    <table class="table table-hover mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Time horizon</th>
+                <th scope="col">Chance</th>
+                <th scope="col">Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Per block</th>
+                <td id="perblock-target1"></td>
+                <td id="perblock-target2"></td>
+            </tr>
+            <tr>
+                <th scope="row">Per day</th>
+                <td id="perday-target1"></td>
+                <td id="perday-target2"></td>
+            </tr>
+            <tr>
+                <th scope="row">Per year</th>
+                <td id="peryear-target1"></td>
+                <td id="peryear-target2"></td>
+            </tr>
+            <tr id="liferow">
+                <th scope="row"">In your lifetime</th>
+                <td id="perlife-target1"></td>
+                <td id="perlife-target2"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a class="text-muted" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
+    </footer>
+
+    <script>
+        var hashrate = 0;
+
+        var presetData = {
+            'nerdminer': [1, 45],
+            'u2plus': [3, 2],
+            'marslander': [3, 300],
+            's9': [4, 13.5],
+            's19pro': [4, 110]
+        };
+
+        window.onload = function () {
+
+            fetch('https://mempool.space/api/v1/mining/hashrate/1m').then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                else {
+                    throw new Error('Request failed with status: ' + response.status);
+                }
+            }).then(data => {
+                console.log(data);
+                hashrate = data.hashrates[data.hashrates.length-1].avgHashrate;
+                document.getElementById('hashrate-target').innerHTML = (hashrate / 1000000000000000000).toFixed(4) + ' EH/s';
+            });
+
+            document.getElementById('calculate').addEventListener('click', function () {
+
+                let unit = 1000 ** Number(document.getElementById('unit').value);
+                let hashratelocal = Number(document.getElementById('hashratelocal').value);
+                let uptime = Number(document.getElementById('uptime').value);
+                let lifeexpectancy = Number(document.getElementById('lifeexpectancy').value);
+                let factor = Number(document.getElementById('expectedincrease').value);
+
+                if (hashratelocal < 1) {
+                    alert('Missing required field: Your local hashrate.');
+                    return;
+                }
+                if (uptime < 1 || uptime > 24) {
+                    alert('Invalid uptime, will default to 24 hours.');
+                    document.getElementById('uptime').value = 24;
+                    uptime = 24;
+                }
+                if (lifeexpectancy < 1) {
+                    alert('You are certainly not dead yet! :D');
+                    document.getElementById('lifeexpectancy').value = 72;
+                    lifeexpectancy = 72;
+                }
+                if (factor <= 0) {
+                    alert('BITCOIN IS GOING TO ZERO!? Invalid hashrate growth factor, will default to 1.');
+                    document.getElementById('expectedincrease').value = 1;
+                    factor = 1;
+                }
+
+                let perblock = Math.max(Math.min(((hashratelocal * unit) / hashrate) * 100, 100), 0);
+                document.getElementById('perblock-target1').innerHTML = inChance(perblock);
+                document.getElementById('perblock-target2').innerHTML = perblock + ' %';
+
+                let perday = Math.min(perblock * 6 * uptime, 100);
+                document.getElementById('perday-target1').innerHTML = inChance(perday);
+                document.getElementById('perday-target2').innerHTML = perday + ' %';
+
+                let peryear = Math.min(perday * 365, 100);
+                document.getElementById('peryear-target1').innerHTML = inChance(peryear);
+                document.getElementById('peryear-target2').innerHTML = peryear + ' %';
+
+                // Mathe Credits gehen an @skyrmion <3
+                let adjustment = 1;
+                if (factor > 1) {
+                    adjustment = (factor - 1) / (factor * Math.log(factor));
+                }
+                let perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy * adjustment)) * 100, 100)
+                
+                document.getElementById('perlife-target1').innerHTML = inChance(perlife);
+                document.getElementById('perlife-target2').innerHTML = perlife + ' %';
+
+                if (perlife >= 50) {
+                    document.getElementById('liferow').classList = ['table-success'];
+                }
+                else if (perlife > 1) {
+                    document.getElementById('liferow').classList = ['table-warning'];
+                }
+                else {
+                    document.getElementById('liferow').classList = ['table-danger'];
+                }
+            });
+
+            document.getElementById('preset').addEventListener('change', (event) => {
+                selected = presetData[event.target.value];
+                document.getElementById('unit').value = selected[0];
+                document.getElementById('hashratelocal').value = selected[1];
+                document.getElementById('calculate').click();
+            });
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        };
+
+        function inChance (percentage) {
+            if (percentage < 0) {
+                return 'N/A';
+            }
+            if (percentage > 100) {
+                percentage = 100;
+            }
+            
+            return '1 in ' + (1 / (percentage / 100)).toFixed(0);
+        }
+    </script>
+    
+</body>
+
+</html>
