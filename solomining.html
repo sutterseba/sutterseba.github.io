@@ -159,7 +159,7 @@
                     document.getElementById('lifeexpectancy').value = 72;
                     lifeexpectancy = 72;
                 }
-                if (factor <= 0) {
+                if (factor < 1) {
                     alert('BITCOIN IS GOING TO ZERO!? Invalid hashrate growth factor, will default to 1.');
                     document.getElementById('expectedincrease').value = 1;
                     factor = 1;
