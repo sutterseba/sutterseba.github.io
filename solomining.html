@@ -117,18 +117,18 @@
         <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a style="color: orange;" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
     </footer>
 
-    <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="errormodalLabel" aria-hidden="true">
+    <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="error-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="errormodalLabel">Alert</h5>
+                    <h5 class="modal-title" id="error-title">Alert</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id="error-target"></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Dismiss</button>
                 </div>
             </div>
         </div>
@@ -176,12 +176,14 @@
                 var factor = Number($('#factor').val());
 
                 if (local < 1) {
-                    $('#error-target').html('The local hashrate amount you entered is invalid. Please try again.');
+                    $('#error-title').html('Invalid hashrate')
+                    $('#error-target').html('Missing or invalid local hashrate. Please try again and make sure you enter a positive amount.');
                     $('#errormodal').modal('show');
                     return;
                 }
                 if (time < 1) {
-                    $('#error-target').html('You are certainly not dead yet! Please enter a reasonable time horizon and try again.');
+                    $('#error-title').html('Invalid time horizon')
+                    $('#error-target').html('You are certainly not dead yet! :D<br>Please enter an amount of years greater than or equal to 1.');
                     $('#errormodal').modal('show');
                     return;
                 }
@@ -189,14 +191,16 @@
                     $('#uptime').val(24);
                     uptime = 24;
 
-                    $('#error-target').html('The uptime you entered is invalid. Defaulted to 24 hours');
+                    $('#error-title').html('Invalid uptime')
+                    $('#error-target').html('The uptime you entered is invalid. You must enter an amount between 1 and 24 hours. Defaulted to 24 hours instead.');
                     $('#errormodal').modal('show');
                 }
                 if (factor < 1) {
                     $('#factor').val(1);
                     factor = 1;
 
-                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?</span> The hashrate growth factor you entered is invalid. Defaulted to 1.');
+                    $('#error-title').html('Invalid hashrate increase')
+                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?!</span><br>Seriously, the hashrate growth factor you entered is invalid. Defaulted to 1.');
                     $('#errormodal').modal('show');
                 }
 
