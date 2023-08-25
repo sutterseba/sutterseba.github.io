@@ -113,6 +113,23 @@
         <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a class="text-muted" style="text-decoration: underline;" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
     </footer>
 
+    <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="errormodalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errormodalLabel">Alert</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="error-target"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         var hashrate = 0;
 
@@ -125,6 +142,8 @@
         };
 
         window.onload = function () {
+
+            $('#errormodal').modal({ show: false })
 
             fetch('https://mempool.space/api/v1/mining/hashrate/1m').then(response => {
                 if (response.ok) {
@@ -148,21 +167,24 @@
                 let factor = Number(document.getElementById('expectedincrease').value);
 
                 if (hashratelocal < 1) {
-                    alert('Missing required field: Your local hashrate.');
+                    document.getElementById('error-target').innerHTML = 'The local hashrate amount you entered is invalid. Please try again. ';
+                    $('#errormodal').modal('show');
+                    return;
+                }
+                if (lifeexpectancy < 1) {
+                    document.getElementById('error-target').innerHTML = 'You are certainly not dead yet! Please enter a reasonable time horizon and try again.';
+                    $('#errormodal').modal('show');
                     return;
                 }
                 if (uptime < 1 || uptime > 24) {
-                    alert('Invalid uptime, will default to 24 hours.');
+                    document.getElementById('error-target').innerHTML = 'The uptime you entered is invalid. Will default to 24 hours and continue with calculation.';
+                    $('#errormodal').modal('show');
                     document.getElementById('uptime').value = 24;
                     uptime = 24;
                 }
-                if (lifeexpectancy < 1) {
-                    alert('You are certainly not dead yet! :D');
-                    document.getElementById('lifeexpectancy').value = 72;
-                    lifeexpectancy = 72;
-                }
                 if (factor < 1) {
-                    alert('BITCOIN IS GOING TO ZERO!? Invalid hashrate growth factor, will default to 1.');
+                    document.getElementById('error-target').innerHTML = '<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?</span> The hashrate growth factor you entered is invalid. Will default to 1 and continue with calculation.';
+                    $('#errormodal').modal('show');
                     document.getElementById('expectedincrease').value = 1;
                     factor = 1;
                 }
