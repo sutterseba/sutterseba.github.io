@@ -28,18 +28,18 @@
 </head>
 
 <body class="m-5">
-    <h1 class="font-weight-bold">Solo Mining Calculator <small class="text-muted"></small></h1>
+    <h1 class="font-weight-bold text-dark">Solo Mining Calculator <small class="text-muted"></small></h1>
 
     <div class="text-muted mt-4">
         Calculate your chances for finding a valid bitcoin block when using common lottery mining hardware.<br>
         Current (average) hashrate used for calculations is taken from the <a href="https://mempool.space/docs/api/rest#get-hashrate" target="_blank">mempool.space API</a> and is updated locally on each page refresh.
     </div>
 
-    <div class="mt-4"><span class="font-weight-bold">Current network hashrate: </span><span id="hashrate-target" class="text-muted"></span>&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="Yesterdays average hashrate discounts real-time fluctuations while still being up to date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></span></div>
+    <div class="mt-4"><span class="font-weight-bold text-dark">Current network hashrate: </span><span id="hashrate-target" class="text-muted"></span>&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="Yesterdays average hashrate discounts real-time fluctuations while still being up to date"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"> <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></span></div>
 
     <div class="mt-4">
         <div id="presets">
-            <label for="preset"><strong>Choose from a preset</strong></label>
+            <label for="preset"><strong class="text-dark">Choose from a preset</strong></label>
             <select class="form-control w-25 mobile-width" id="preset">
                 <option value="default" selected>None</option>
                 <option value="nerdminer">NerdMiner (45 KH/s)</option>
@@ -50,7 +50,7 @@
             </select>
         </div>
 
-        <label for="unit" class="font-weight-bold mt-2">Select hashrate unit</label>
+        <label for="unit" class="font-weight-bold mt-2 text-dark">Select hashrate unit</label>
         <select class="form-control w-25 mobile-width" id="unit">
             <option value="0">Hash (H/s)</option>
             <option value="1">Kilohash (KH/s)</option>
@@ -60,23 +60,24 @@
             <option value="5">Petahash (PH/s)</option>
         </select>
 
-        <label for="hashratelocal" class="mt-2 font-weight-bold">Your local hashrate</label>
-        <input type="number" class="form-control w-25 mobile-width" id="hashratelocal" min="1" value="21" required>
+        <label for="hashratelocal" class="mt-2 font-weight-bold text-dark">Local hashrate</label>
+        <input type="number" class="form-control w-25 mobile-width" id="hashratelocal" min="1" value="" required>
 
-        <label for="uptime" class="mt-2"><strong>Uptime</strong> (out of 24 hours)</label>
+        <label for="uptime" class="mt-2 text-dark"><strong>Uptime</strong> (out of 24 hours)</label>
         <input type="number" class="form-control w-25 mobile-width" id="uptime" value="24" max="24" min="1" required>
 
-        <label for="lifeexpectancy" class="mt-2"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <label for="lifeexpectancy" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="lifeexpectancy" value="72" max="200" min="1" required>
 
-        <label for="expectedincrease" class="mt-2"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <label for="expectedincrease" class="mt-2 text-dark"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="expectedincrease" value="1" max="200" min="1" required>
         <div class="mt-2 text-muted small">No idea what number to use here? How about <a href="javascript:applyMoore();" class="text-muted" style="text-decoration: underline;" data-toggle="tooltip" data-placement="bottom" title="Expects the network hashrate to double every 24 months and inserts the according factor">applying Moore's law</a>?</div>
 
-        <button type="button" id="calculate" class="mt-4 mb-4 btn btn-lg btn-primary  font-weight-bold">Calculate</button>
+        <button type="button" id="calculate" class="mt-4 mb-4 btn btn-lg btn-primary font-weight-bold">Calculate</button>
+        <button type="button" id="calculate" class="mt-4 mb-4 ml-2 btn btn-lg btn-light font-weight-bold text-dark" onclick="reset();">Reset</button>
     </div>
 
-    <h4 class="mt-4 font-weight-bold">Your results</h2>
+    <h4 class="mt-4 font-weight-bold text-dark">Your results</h2>
 
     <table class="table table-hover mt-4" id="results">
         <thead class="thead-dark">
@@ -86,7 +87,7 @@
                 <th scope="col">Percentage</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-dark">
             <tr>
                 <th scope="row">Per block</th>
                 <td id="perblock-target1"></td>
@@ -264,6 +265,16 @@
 
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function reset () {
+            document.getElementById('preset').value = 'default';
+            document.getElementById('unit').value = 4;
+            document.getElementById('hashratelocal').value = '';
+            document.getElementById('uptime').value = 24;
+            document.getElementById('lifeexpectancy').value = 72;
+            document.getElementById('expectedincrease').value = 1;
+            window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
         }
     </script>
     
