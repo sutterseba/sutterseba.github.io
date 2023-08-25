@@ -62,17 +62,17 @@
             <option value="5">Petahash (PH/s)</option>
         </select>
 
-        <label for="hashratelocal" class="mt-2 font-weight-bold text-dark">Local hashrate</label>
-        <input type="number" class="form-control w-25 mobile-width" id="hashratelocal" min="1" value="" required>
+        <label for="local" class="mt-2 font-weight-bold text-dark">Local hashrate</label>
+        <input type="number" class="form-control w-25 mobile-width" id="local" min="1" value="" required>
 
         <label for="uptime" class="mt-2 text-dark"><strong>Uptime</strong> (out of 24 hours)</label>
         <input type="number" class="form-control w-25 mobile-width" id="uptime" value="24" max="24" min="1" required>
 
-        <label for="lifeexpectancy" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
-        <input type="number" class="form-control w-25 mobile-width" id="lifeexpectancy" value="72" max="200" min="1" required>
+        <label for="time" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <input type="number" class="form-control w-25 mobile-width" id="time" value="72" max="200" min="1" required>
 
-        <label for="expectedincrease" class="mt-2 text-dark"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
-        <input type="number" class="form-control w-25 mobile-width" id="expectedincrease" value="1" max="200" min="1" required>
+        <label for="factor" class="mt-2 text-dark"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <input type="number" class="form-control w-25 mobile-width" id="factor" value="1" max="200" min="1" required>
         <div class="mt-2 text-muted small">No idea what number to use here? How about <a href="javascript:applyMoore();" class="text-muted" style="text-decoration: underline;" data-toggle="tooltip" data-placement="bottom" title="Expects the network hashrate to double every 24 months and inserts the according factor">applying Moore's law</a>?</div>
 
         <button type="button" id="calculate" class="mt-4 mb-4 btn btn-lg btn-primary font-weight-bold">Calculate</button>
@@ -135,9 +135,7 @@
     </div>
 
     <script>
-        var hashrate = 0;
-
-        var presetData = {
+        const presetData = {
             'nerdminer': [1, 45],
             'u2plus': [3, 2],
             'marslander': [3, 300],
@@ -147,10 +145,14 @@
             's19pro': [4, 110]
         };
 
-        window.onload = function () {
+        var hashrate = 0;
 
-            $('#errormodal').modal({ show: false })
+        $(function () {
 
+            $('#errormodal').modal({show: false})
+            $('[data-toggle="tooltip"]').tooltip()
+
+            // GET hashrate from mempool.space
             fetch('https://mempool.space/api/v1/mining/hashrate/1m').then(response => {
                 if (response.ok) {
                     return response.json();
@@ -160,91 +162,89 @@
                 }
             }).then(data => {
                 hashrate = data.hashrates[data.hashrates.length - 1].avgHashrate;
-                document.getElementById('hashrate-target').innerHTML = (hashrate / 1000000000000000000).toFixed(4) + ' EH/s';
+                $('#hashrate-target').html((hashrate / 10**18).toFixed(4) + ' EH/s');
             });
 
-            document.getElementById('calculate').addEventListener('click', function () {
+            $('#calculate').click(function () {
 
-                let unit = 1000 ** Number(document.getElementById('unit').value);
-                let hashratelocal = Number(document.getElementById('hashratelocal').value);
-                let uptime = Number(document.getElementById('uptime').value);
-                let lifeexpectancy = Number(document.getElementById('lifeexpectancy').value);
-                let factor = Number(document.getElementById('expectedincrease').value);
+                // Store values from document
+                var unit = Math.pow(1000, $('#unit').val());
+                var local = Number($('#local').val());
+                var uptime = Number($('#uptime').val());
+                var time = Number($('#time').val());
+                var factor = Number($('#factor').val());
 
-                if (hashratelocal < 1) {
-                    document.getElementById('error-target').innerHTML = 'The local hashrate amount you entered is invalid. Please try again. ';
+                if (local < 1) {
+                    $('#error-target').html('The local hashrate amount you entered is invalid. Please try again.');
                     $('#errormodal').modal('show');
                     return;
                 }
-                if (lifeexpectancy < 1) {
-                    document.getElementById('error-target').innerHTML = 'You are certainly not dead yet! Please enter a reasonable time horizon and try again.';
+                if (time < 1) {
+                    $('#error-target').html('You are certainly not dead yet! Please enter a reasonable time horizon and try again.');
                     $('#errormodal').modal('show');
                     return;
                 }
                 if (uptime < 1 || uptime > 24) {
-                    document.getElementById('error-target').innerHTML = 'The uptime you entered is invalid. Will default to 24 hours and continue with calculation.';
-                    $('#errormodal').modal('show');
-                    document.getElementById('uptime').value = 24;
+                    $('#uptime').val(24);
                     uptime = 24;
+
+                    $('#error-target').html('The uptime you entered is invalid. Defaulted to 24 hours');
+                    $('#errormodal').modal('show');
                 }
                 if (factor < 1) {
-                    document.getElementById('error-target').innerHTML = '<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?</span> The hashrate growth factor you entered is invalid. Will default to 1 and continue with calculation.';
-                    $('#errormodal').modal('show');
-                    document.getElementById('expectedincrease').value = 1;
+                    $('#factor').val(1);
                     factor = 1;
+
+                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?</span> The hashrate growth factor you entered is invalid. Defaulted to 1.');
+                    $('#errormodal').modal('show');
                 }
 
-                let perblock = Math.max(Math.min(((hashratelocal * unit) / hashrate) * 100, 100), 0);
-                let perday = Math.min(perblock * 6 * uptime, 100);
-                let peryear = Math.min(perday * 365, 100);
-
-                 // Mathe Credits gehen an @skyrmion <3
-                if (factor > 1) {
-                    var perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy * ((factor - 1) / (factor * Math.log(factor))))) * 100, 100);
-                }
-                else {
-                    var perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy)) * 100, 100);
-                }
-
-                document.getElementById('perblock-target1').innerHTML = inChance(perblock);
-                document.getElementById('perblock-target2').innerHTML = formatNumber(perblock);
-
-                document.getElementById('perday-target1').innerHTML = inChance(perday);
-                document.getElementById('perday-target2').innerHTML = formatNumber(perday);
-
-                document.getElementById('peryear-target1').innerHTML = inChance(peryear);
-                document.getElementById('peryear-target2').innerHTML = formatNumber(peryear);
+                var perblock = Math.max(Math.min(((local * unit) / hashrate) * 100, 100), 0);
+                var perday = Math.min(perblock * 6 * uptime, 100);
+                var peryear = Math.min(perday * 365, 100);
+                var perlife;
                 
-                document.getElementById('perlife-target1').innerHTML = inChance(perlife);
-                document.getElementById('perlife-target2').innerHTML = formatNumber(perlife);
-
-                if (perlife >= 50) {
-                    document.getElementById('liferow').classList = ['table-success'];
-                }
-                else if (perlife >= 1) {
-                    document.getElementById('liferow').classList = ['table-warning'];
+                if (factor > 1) {
+                    perlife = Math.min((1 - Math.exp(-(local * unit / hashrate) * 6 * uptime * 365 * time * ((factor - 1) / (factor * Math.log(factor))))) * 100, 100);
                 }
                 else {
-                    document.getElementById('liferow').classList = ['table-danger'];
+                    perlife = Math.min((1 - Math.exp(-(local * unit / hashrate) * 6 * uptime * 365 * time)) * 100, 100);
                 }
 
-                window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+                $('#perblock-target1').html(inChance(perblock));
+                $('#perblock-target2').html(formatNumber(perblock));
+
+                $('#perday-target1').html(inChance(perday));
+                $('#perday-target2').html(formatNumber(perday));
+
+                $('#peryear-target1').html(inChance(peryear));
+                $('#peryear-target2').html(formatNumber(peryear));
+                
+                $('#perlife-target1').html(inChance(perlife));
+                $('#perlife-target2').html(formatNumber(perlife));
+
+                if (perlife < 1) {
+                    $('#liferow').addClass('table-danger');
+                }
+                else if (perlife > 50) {
+                    $('#liferow').addClass('table-success');
+                }
+                else {
+                    $('#liferow').addClass('table-warning');
+                }
+
+                window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
             });
 
-            document.getElementById('preset').addEventListener('change', (event) => {
-                let selected = presetData[event.target.value];
-                document.getElementById('unit').value = selected[0];
-                document.getElementById('hashratelocal').value = selected[1];
+            $('#preset').change(function (event) {
+                const selected = presetData[event.target.value];
+                $('#unit').val(selected[0]);
+                $('#local').val(selected[1]);
             });
-
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        };
+        });
 
         function applyMoore () {
-            document.getElementById('expectedincrease').value = 2 ** Math.floor(document.getElementById('lifeexpectancy').value / 2);
-            $('#expectedincrease').val(2 ** Math.floor($('#lifeexpectancy').val() / 2));
+            $('#factor').val(2 ** Math.floor($('#time').val() / 2));
         }
 
         function inChance (percentage) {
@@ -254,7 +254,6 @@
             if (percentage > 100) {
                 percentage = 100;
             }
-            
             return '1 in ' + withDelimiters((1 / (percentage / 100)).toFixed(0));
         }
 
@@ -268,23 +267,27 @@
         }
 
         function withDelimiters (n) {
+            // 1000000000 => 1,000,000,000
             return n.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
         }
 
         function resetAll () {
-            document.getElementById('preset').value = 'default';
-            document.getElementById('unit').value = 4;
-            document.getElementById('hashratelocal').value = '';
-            document.getElementById('uptime').value = 24;
-            document.getElementById('lifeexpectancy').value = 72;
-            document.getElementById('expectedincrease').value = 1;
+            // Restore default values
+            $('#preset').val('default');
+            $('#unit').val(4);
+            $('#local').val('');
+            $('#uptime').val(24);
+            $('#time').val(72);
+            $('#factor').val(1);
+            $('#liferow').removeClass();
 
-            document.querySelectorAll('.result').forEach(cell => {
-                cell.innerHTML = '';
+            // Clear result table
+            $('.result').each(function () {
+                $(this).html('');
             });
 
-            document.getElementById('liferow').classList = [];
-            window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+            // Scroll to top of page
+            window.scrollTo({left: 0, top: 0, behavior: "smooth"});
         }
     </script>
 </body>
