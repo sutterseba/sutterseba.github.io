@@ -243,7 +243,7 @@
                 percentage = 100;
             }
             
-            return '1 in ' + (1 / (percentage / 100)).toFixed(0);
+            return '1 in ' + numberWithCommas((1 / (percentage / 100)).toFixed(0));
         }
 
         function formatNumber (n) {
@@ -253,6 +253,10 @@
             else {
                 return n.toFixed(4) + ' %';
             }
+        }
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
         }
     </script>
     
