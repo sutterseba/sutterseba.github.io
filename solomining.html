@@ -28,7 +28,7 @@
 </head>
 
 <body class="m-5">
-    <h1 class="font-weight-bold">Solo Mining Calculator <small class="text-muted">(Untested)</small></h1>
+    <h1 class="font-weight-bold">Solo Mining Calculator <small class="text-muted"></small></h1>
 
     <div class="text-muted mt-4">
         Calculate your chances for finding a valid bitcoin block when using common lottery mining hardware.<br>
@@ -72,12 +72,13 @@
         <label for="expectedincrease" class="mt-2"><strong>Expected hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="right" title="By how much will the network hashrate increase? (Only affects your custom time horizon)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="expectedincrease" value="1" max="200" min="1" required>
 
-        
-        <button type="button" id="calculate" class="mt-4 btn btn-success font-weight-bold">Calculate</button>
+        <button type="button" id="calculate" class="mt-4 btn btn-primary font-weight-bold">Calculate</button>
     </div>
 
-    <table class="table table-hover mt-4">
-        <thead class="thead-light">
+    <h4 class="mt-4 font-weight-bold">Your results</h2>
+
+    <table class="table table-hover mt-4" id="results">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">Time horizon</th>
                 <th scope="col">Chance</th>
@@ -109,7 +110,7 @@
     </table>
 
     <footer>
-        <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a class="text-muted" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
+        <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a class="text-muted" style="text-decoration: underline;" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
     </footer>
 
     <script>
@@ -168,25 +169,26 @@
 
                 let perblock = Math.max(Math.min(((hashratelocal * unit) / hashrate) * 100, 100), 0);
                 document.getElementById('perblock-target1').innerHTML = inChance(perblock);
-                document.getElementById('perblock-target2').innerHTML = perblock + ' %';
+                document.getElementById('perblock-target2').innerHTML = formatNumber(perblock);
 
                 let perday = Math.min(perblock * 6 * uptime, 100);
                 document.getElementById('perday-target1').innerHTML = inChance(perday);
-                document.getElementById('perday-target2').innerHTML = perday + ' %';
+                document.getElementById('perday-target2').innerHTML = formatNumber(perday);
 
                 let peryear = Math.min(perday * 365, 100);
                 document.getElementById('peryear-target1').innerHTML = inChance(peryear);
-                document.getElementById('peryear-target2').innerHTML = peryear + ' %';
+                document.getElementById('peryear-target2').innerHTML = formatNumber(peryear);
 
                 // Mathe Credits gehen an @skyrmion <3
-                let adjustment = 1;
                 if (factor > 1) {
-                    adjustment = (factor - 1) / (factor * Math.log(factor));
+                    var perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy * ((factor - 1) / (factor * Math.log(factor))))) * 100, 100);
                 }
-                let perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy * adjustment)) * 100, 100)
+                else {
+                    var perlife = Math.min((1 - Math.exp(-(hashratelocal * unit / hashrate) * 6 * uptime * 365 * lifeexpectancy)) * 100, 100);
+                }
                 
                 document.getElementById('perlife-target1').innerHTML = inChance(perlife);
-                document.getElementById('perlife-target2').innerHTML = perlife + ' %';
+                document.getElementById('perlife-target2').innerHTML = formatNumber(perlife);
 
                 if (perlife >= 50) {
                     document.getElementById('liferow').classList = ['table-success'];
@@ -220,6 +222,15 @@
             }
             
             return '1 in ' + (1 / (percentage / 100)).toFixed(0);
+        }
+
+        function formatNumber (n) {
+            if (n < 0.0001) {
+                return n.toExponential(4) + ' %';
+            }
+            else {
+                return n.toFixed(4) + ' %';
+            }
         }
     </script>
     
