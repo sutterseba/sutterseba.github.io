@@ -235,13 +235,13 @@
                 $('#perlife-target2').html(formatNumber(perlife));
 
                 if (perlife < 1) {
-                    $('#liferow').addClass('table-danger');
+                    document.getElementById('liferow').classList = ['table-danger'];
                 }
                 else if (perlife > 50) {
-                    $('#liferow').addClass('table-success');
+                    document.getElementById('liferow').classList = ['table-success'];
                 }
                 else {
-                    $('#liferow').addClass('table-warning');
+                    document.getElementById('liferow').classList = ['table-warning'];
                 }
 
                 window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
