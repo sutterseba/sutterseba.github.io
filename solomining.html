@@ -207,7 +207,6 @@
                     $('#errormodal').modal('show');
                 }
                 if (factor === 1.41) {
-                    // Use more exact value for default
                     factor = Math.SQRT2;
                 }
 
@@ -231,15 +230,8 @@
                 $('#perlife-target1').html(inChance(perlife));
                 $('#perlife-target2').html(formatNumber(perlife));
 
-                if (perlife < 1) {
-                    document.getElementById('liferow').classList = ['table-danger'];
-                }
-                else if (perlife > 50) {
-                    document.getElementById('liferow').classList = ['table-success'];
-                }
-                else {
-                    document.getElementById('liferow').classList = ['table-warning'];
-                }
+                // Set table color based on result
+                document.getElementById('liferow').classList = perlife < 1 ? ['table-danger'] : perlife > 50 ? ['table-success'] : ['table-warning'];
 
                 window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
             });
@@ -285,12 +277,7 @@
         }
 
         function formatNumber (n) {
-            if (n < 0.0001) {
-                return n.toExponential(4) + ' %';
-            }
-            else {
-                return n.toFixed(4) + ' %';
-            }
+            return n < 0.0001 ? n.toExponential(4) + ' %' : n.toFixed(4) + ' %';
         }
 
         function withDelimiters (n) {
