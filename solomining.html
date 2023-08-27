@@ -264,7 +264,7 @@
         });
 
         function calculateChance (local, N, b) {
-            if (b === 1) {
+            if (b === 1 || N === 1) {
                 return (1 - Math.pow(hashrate/(hashrate + local), N)) * 100;
             }
             return (1 - Math.exp(-(local/hashrate) * ((1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1))))) * 100;
