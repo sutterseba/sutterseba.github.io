@@ -69,7 +69,7 @@
         <input type="number" class="form-control w-25 mobile-width" id="uptime" value="24" max="24" min="1" required>
 
         <label for="years" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
-        <input type="number" class="form-control w-25 mobile-width" id="years" value="72" max="200" min="1" required>
+        <input type="number" class="form-control w-25 mobile-width" id="years" value="10" max="200" min="1" required>
 
         <label for="factor" class="mt-2 text-dark"><strong>Yearly hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="By which factor will the network hashrate increase every year? (Uses Moore's law as default)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="factor" value="1.41" max="200" min="1" required>
@@ -173,18 +173,18 @@
 
                 // Store values from document
                 var unit = Math.pow(1000, $('#unit').val());
-                var local = Number($('#local').val());
+                var rawlocal = Number($('#local').val());
                 var uptime = Number($('#uptime').val());
                 var years = Number($('#years').val());
                 var factor = Number($('#factor').val());
 
-                if (local < 1) {
+                if (rawlocal < 1) {
                     $('#error-title').html('Invalid hashrate')
                     $('#error-target').html('Missing or invalid local hashrate. Please try again and make sure you enter a positive amount.');
                     $('#errormodal').modal('show');
                     return;
                 }
-                if (years < 1) {
+                if (years < 0) {
                     $('#error-title').html('Invalid time horizon')
                     $('#error-target').html('You are certainly not dead yet! :D<br>Please enter an amount of years greater than or equal to 1.');
                     $('#errormodal').modal('show');
@@ -198,12 +198,12 @@
                     $('#error-target').html('The uptime you entered is invalid. You must enter an amount between 1 and 24 hours. Defaulted to 24 hours instead.');
                     $('#errormodal').modal('show');
                 }
-                if (factor < 1) {
+                if (factor <= 0) {
                     $('#factor').val(1.41);
                     factor = Math.SQRT2;
 
                     $('#error-title').html('Invalid hashrate increase')
-                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?!</span><br><br>For real, the hashrate growth factor you entered is invalid. Defaulted to 1.41.');
+                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?!</span><br><br>The hashrate growth factor you entered is invalid. Defaulted to 1.41.');
                     $('#errormodal').modal('show');
                 }
                 if (factor === 1.41) {
@@ -211,16 +211,13 @@
                     factor = Math.SQRT2;
                 }
 
-                var perblock = Math.max(Math.min(((local * unit) / hashrate) * 100, 100), 0);
-                var perday = Math.min(perblock * 6 * uptime, 100);
-                var peryear = Math.min(perday * 365, 100);
-                var perlife = Math.min(peryear * years, 100);
+                var local = rawlocal * unit;
+                var b = Math.pow(factor, 1 / 52560);
                 
-                if (factor > 1) {
-                    var b = Math.pow(factor, 1 / 52560);
-                    var N = 6 * uptime * 365 * years;
-                    perlife = Math.min((1 - Math.exp(-(local * unit / hashrate) * ((1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1))))) * 100, 100);
-                }
+                var perblock = calculateChance(local, 1, b);
+                var perday = calculateChance(local, 6 * uptime, b);
+                var peryear = calculateChance(local, 6 * uptime * 365, b);
+                var perlife = calculateChance(local, 6 * uptime * 365 * years, b);
 
                 $('#perblock-target1').html(inChance(perblock));
                 $('#perblock-target2').html(formatNumber(perblock));
@@ -265,6 +262,13 @@
                 }
             })
         });
+
+        function calculateChance (local, N, b) {
+            if (b === 1) {
+                return (1 - Math.pow(hashrate/(hashrate + local), N)) * 100;
+            }
+            return (1 - Math.exp(-(local/hashrate) * ((1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1))))) * 100;
+        }
 
         function applyMoore () {
             $('#factor').val(2 ** Math.floor($('#years').val() / 2));
