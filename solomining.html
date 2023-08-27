@@ -262,10 +262,6 @@
             return (1 - Math.exp(-(local/hashrate) * ((1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1))))) * 100;
         }
 
-        function applyMoore () {
-            $('#factor').val(2 ** Math.floor($('#years').val() / 2));
-        }
-
         function inChance (percentage) {
             if (percentage < 0) {
                 return 'N/A';
