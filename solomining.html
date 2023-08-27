@@ -117,7 +117,7 @@
     </table>
 
     <footer>
-        <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a style="color: orange;" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a></small>
+        <small class="text-muted">Made with <span style="color: orange;">♥</span> by <a style="color: orange;" href="https://twitter.com/sutterseba" target="_blank">@sutterseba</a> & <a style="color: orange;" href="https://forum.blocktrainer.de/u/skyrmion" target="_blank">@skyrmion</a></small>
     </footer>
 
     <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" aria-labelledby="error-title" aria-hidden="true">
@@ -255,11 +255,11 @@
             })
         });
 
-        function calculateChance (local, N, b) {
-            if (b === 1 || N === 1) {
-                return (1 - Math.pow(hashrate/(hashrate + local), N)) * 100;
+        function calculateChance(local, N, b) {
+            if (b === 1) {
+                return (- Math.expm1(-(local / hashrate) * N)) * 100;
             }
-            return (1 - Math.exp(-(local/hashrate) * ((1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1))))) * 100;
+            return (- Math.expm1(-(local / hashrate) * (1 - Math.pow(b, -N)) / (1 - Math.pow(b, -1)))) * 100;
         }
 
         function inChance (percentage) {
