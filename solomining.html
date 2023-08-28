@@ -71,7 +71,7 @@
         <label for="years" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="years" value="10" max="200" min="1" required>
 
-        <label for="factor" class="mt-2 text-dark"><strong>Yearly hashrate increase</strong> (by factor)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="By which factor will the network hashrate increase every year? (Uses Moore's law as default)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <label for="factor" class="mt-2 text-dark"><strong>Yearly hashrate increase</strong> (by factor)&ensp;<a class="small font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="Click for more information" href="javascript:$('#explainmodal').modal('show');" style="text-decoration: underline;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></a></label>
         <input type="number" class="form-control w-25 mobile-width" id="factor" value="1.41" max="200" min="1" required>
         <div class="custom-control custom-switch mt-2">
             <input type="checkbox" class="custom-control-input" id="disablefactor" checked>
@@ -132,6 +132,31 @@
                 <div class="modal-body" id="error-target"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal">Dismiss</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="explainmodal" tabindex="-1" role="dialog" aria-labelledby="explainmodalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="explainmodalLongTital">Using the yearly hashrate increase factor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-dark">
+                    <p>When calculating solo mining chances over a longer period of time, e.g. for more than one year, it would be increasingly
+                    inaccurate, and at some point just straight up false, to assume the network hashrate is not changing. Because it is!</p>
+                    <p>This calculator aims to factor in a (more or less) realistic estimated growth of the network hashrate. By how much it is going to increase in the future is, of course, pure speculation, which is why you can adjust the yearly growth factor yourself, as you see fit. For example, if you think the network hashrate is going to double every year, you would set a value of 2.</p>
+                    <p>If you have no idea where to start, however, we do propose a default value of 1.41, which corresponds to the hashrate doubling every 2 years. This roughly matches the past few years of hashrate data and can also be justified with <a href="https://en.wikipedia.org/wiki/Moore%27s_law" target="_blank">Moore's Law</a>.</p>
+                    <p>Of course, if you prefer to use a contant hashrate for your calculations, you can disable this feature entirely.</p>
+                    <p>Good luck and happy hashing!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Got it</button>
                 </div>
             </div>
         </div>
