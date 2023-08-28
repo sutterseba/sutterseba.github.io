@@ -138,6 +138,16 @@
     </div>
 
     <script>
+
+        const defaults = {
+            'preset': 'default',
+            'unit': 4,
+            'local': '',
+            'uptime': 24,
+            'years': 10,
+            'factor': 1.41
+        };
+        
         const presetData = {
             'nerdminer': [1, 45],
             'u2plus': [3, 2],
@@ -164,8 +174,12 @@
                     throw new Error('Request failed with status: ' + response.status);
                 }
             }).then(data => {
-                // Save the last (i.e. yesterdays) average hashrate
-                hashrate = data.hashrates[data.hashrates.length - 1].avgHashrate;
+                // Calculate and save last weeks average hashrate
+                $(data.hashrates.slice(-7)).each(function () {
+                    hashrate += this.avgHashrate;
+                })
+                hashrate /= 7;
+
                 $('#hashrate-target').html((hashrate / 10**18).toFixed(4) + ' EH/s');
             });
 
@@ -184,28 +198,32 @@
                     $('#errormodal').modal('show');
                     return;
                 }
+
                 if (years < 0) {
                     $('#error-title').html('Invalid time horizon')
                     $('#error-target').html('You are certainly not dead yet! :D<br>Please enter an amount of years greater than or equal to 1.');
                     $('#errormodal').modal('show');
                     return;
                 }
+
                 if (uptime < 1 || uptime > 24) {
-                    $('#uptime').val(24);
-                    uptime = 24;
+                    $('#uptime').val(defaults.uptime);
+                    uptime = defaults.uptime;
 
                     $('#error-title').html('Invalid uptime')
                     $('#error-target').html('The uptime you entered is invalid. You must enter an amount between 1 and 24 hours. Defaulted to 24 hours instead.');
                     $('#errormodal').modal('show');
                 }
+
                 if (factor <= 0) {
-                    $('#factor').val(1.41);
+                    $('#factor').val(defaults.factor);
                     factor = Math.SQRT2;
 
                     $('#error-title').html('Invalid hashrate increase')
                     $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?!</span><br><br>The hashrate growth factor you entered is invalid. Defaulted to 1.41.');
                     $('#errormodal').modal('show');
                 }
+
                 if (factor === 1.41) {
                     factor = Math.SQRT2;
                 }
@@ -249,7 +267,7 @@
                     $('#factor').attr('disabled', true);
                 }
                 else {
-                    $('#factor').val(1.41);
+                    $('#factor').val(defaults.factor);
                     $('#factor').removeAttr('disabled');
                 }
             })
@@ -283,18 +301,19 @@
 
         function resetAll () {
             // Restore default values
-            $('#preset').val('default');
-            $('#unit').val(4);
+            $('#preset').val(defaults.preset);
+            $('#unit').val(defaults.unit);
+            $('#uptime').val(defaults.uptime);
+            $('#years').val(defaults.years);
+            $('#factor').val(defaults.factor);
             $('#local').val('');
-            $('#uptime').val(24);
-            $('#years').val(72);
-            $('#factor').val(1);
-            $('#liferow').removeClass();
+            
+            // Reset factor checkbox
             $('#disablefactor').prop('checked', false);
-            $('#factor').val(1.41);
             $('#factor').removeAttr('disabled');
 
             // Clear result table
+            $('#liferow').removeClass();
             $('.result').each(function () {
                 $(this).html('');
             });
