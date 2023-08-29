@@ -217,9 +217,9 @@
                 var years = Number($('#years').val());
                 var factor = Number($('#factor').val());
 
-                if (rawlocal < 1) {
-                    $('#error-title').html('Invalid hashrate')
-                    $('#error-target').html('Missing or invalid local hashrate. Please try again and make sure you enter a positive amount.');
+                if (rawlocal <= 0) {
+                    $('#error-title').html('Invalid hashrate');
+                    $('#error-target').html('The hashrate value you entered is either invalid (not greater than zero) or missing altogether. Please try again.');
                     $('#errormodal').modal('show');
                     return;
                 }
