@@ -224,7 +224,7 @@
                     return;
                 }
 
-                if (years < 0) {
+                if (years <= 0) {
                     $('#error-title').html('Invalid time horizon')
                     $('#error-target').html('You are certainly not dead yet! :D<br>Please enter an amount of years greater than or equal to 1.');
                     $('#errormodal').modal('show');
