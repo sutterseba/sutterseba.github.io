@@ -79,7 +79,7 @@
         </div>
 
         <button type="button" id="calculate" class="mt-4 mb-4 btn btn-lg btn-primary font-weight-bold">Calculate</button>
-        <button type="button" id="reset" class="mt-4 mb-4 ml-2 btn btn-lg btn-light font-weight-bold text-dark" onclick="resetAll()">Reset</button>
+        <button type="button" id="reset" class="mt-4 mb-4 ml-2 btn btn-lg btn-light font-weight-bold text-dark">Reset</button>
     </div>
 
     <h4 class="mt-4 font-weight-bold text-dark">Your results</h2>
@@ -231,7 +231,7 @@
                     return;
                 }
 
-                if (uptime < 1 || uptime > 24) {
+                if (uptime <= 0 || uptime > 24) {
                     $('#uptime').val(defaults.uptime);
                     uptime = defaults.uptime;
 
@@ -278,6 +278,8 @@
 
                 window.scrollTo({left: 0, top: document.body.scrollHeight, behavior: "smooth"});
             });
+
+            $('#reset').click(resetAll);
 
             $('#preset').change(function (event) {
                 const selected = presetData[event.target.value];
