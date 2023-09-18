@@ -68,7 +68,7 @@
         <label for="uptime" class="mt-2 text-dark"><strong>Uptime</strong> (out of 24 hours)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How many hours will your hardware be running each day? (Relevant for e.g. solar miners)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label></label>
         <input type="number" class="form-control w-25 mobile-width" id="uptime" value="24" max="24" min="1" required>
 
-        <label for="years" class="mt-2 text-dark"><strong>Time to live</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
+        <label for="years" class="mt-2 text-dark"><strong>Time horizon</strong> (years)&ensp;<span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="How long are you (and your mining hardware) going to stay alive? :P"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></label></span></label>
         <input type="number" class="form-control w-25 mobile-width" id="years" value="10" max="200" min="1" required>
 
         <label for="factor" class="mt-2 text-dark"><strong>Yearly hashrate increase</strong> (by factor)&ensp;<a class="small font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="Click for more information" href="javascript:$('#explainmodal').modal('show');" style="text-decoration: underline;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" /></svg></a></label>
@@ -124,14 +124,14 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="error-title">Alert</h5>
+                    <h5 class="modal-title text-dark font-weight-bold" id="error-title">Alert</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id="error-target"></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Dismiss</button>
+                    <button type="button" class="btn btn-dark font-weight-bold" data-dismiss="modal">Dismiss</button>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="explainmodalLongTital">Using the yearly hashrate increase factor</h5>
+                    <h5 class="modal-title font-weight-bold text-dark" id="explainmodalLongTital">Using the yearly hashrate increase factor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -219,14 +219,14 @@
 
                 if (rawlocal <= 0) {
                     $('#error-title').html('Invalid hashrate');
-                    $('#error-target').html('The hashrate value you entered is either invalid (not greater than zero) or missing altogether. Please try again.');
+                    $('#error-target').html('The hashrate value you entered is either invalid or missing.<br>Enter an amount greater than zero.');
                     $('#errormodal').modal('show');
                     return;
                 }
 
                 if (years <= 0) {
                     $('#error-title').html('Invalid time horizon')
-                    $('#error-target').html('You are certainly not dead yet! :D<br>Please enter an amount of years greater than or equal to 1.');
+                    $('#error-target').html('The time horizon you entered is invalid or missing.<br>Enter an amount of years greater than zero.');
                     $('#errormodal').modal('show');
                     return;
                 }
@@ -236,7 +236,7 @@
                     uptime = defaults.uptime;
 
                     $('#error-title').html('Invalid uptime')
-                    $('#error-target').html('The uptime you entered is invalid. You must enter an amount between 1 and 24 hours. Defaulted to 24 hours instead.');
+                    $('#error-target').html('The uptime you entered is invalid or missing.<br>Enter an amount between 0 and 24 hours.<br>Defaulted to 24 hours and continued with calculation.');
                     $('#errormodal').modal('show');
                 }
 
@@ -245,7 +245,7 @@
                     factor = Math.SQRT2;
 
                     $('#error-title').html('Invalid hashrate increase')
-                    $('#error-target').html('<span class="text-danger font-weight-bold">BITCOIN IS GOING TO ZERO?!</span><br><br>The hashrate growth factor you entered is invalid. Defaulted to 1.41.');
+                    $('#error-target').html('The hashrate growth factor you entered is invalid or missing.<br>Enter a factor greater than zero.<br>Defaulted to 1.41 and continued with calculatoion.');
                     $('#errormodal').modal('show');
                 }
 
