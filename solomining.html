@@ -110,7 +110,7 @@
                     <td class="peryear-target2 result"></td>
                 </tr>
                 <tr id="liferow">
-                    <th scope="row">In your lifetime</th>
+                    <th scope="row">Custom</th>
                     <td class="perlife-target1 result"></td>
                     <td class="perlife-target2 result"></td>
                 </tr>
@@ -120,7 +120,7 @@
         <table class="table table-hover mt-4 results" id="mobile-table">
             <thead class="thead-dark">
                 <tr>
-                    <th>Pro Block</th>
+                    <th>Per block</th>
                 </tr>
             </thead>
             <tbody class="text-dark">
@@ -133,7 +133,7 @@
             </tbody>
             <thead class="thead-dark">
                 <tr>
-                    <th>Pro Tag</th>
+                    <th>Per day</th>
                 </tr>
             </thead>
             <tbody class="text-dark">
@@ -146,7 +146,7 @@
             </tbody>
             <thead class="thead-dark">
                 <tr>
-                    <th>Pro Jahr</th>
+                    <th>Per year</th>
                 </tr>
             </thead>
             <tbody class="text-dark">
@@ -159,7 +159,7 @@
             </tbody>
             <thead class="thead-dark">
                 <tr>
-                    <th>Gesamter Zeitraum</th>
+                    <th>Custom</th>
                 </tr>
             </thead>
             <tbody id="lifesection" class="text-dark">
@@ -248,7 +248,6 @@
             $('[data-toggle="tooltip"]').tooltip()
 
             $('#rescontainer').hide();
-            $('#mobile-table').hide();
             $('#rescontainer').removeAttr('hidden');
 
             // GET hashrate from mempool.space
@@ -342,6 +341,10 @@
                 if (isMobile()) {
                     $('#desktop-table').hide();
                     $('#mobile-table').show();
+                }
+                else {
+                    $('#desktop-table').show();
+                    $('#mobile-table').hide();
                 }
 
                 // Show results and scroll into view
