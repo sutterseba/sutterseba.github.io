@@ -42,13 +42,15 @@
             <label for="preset"><strong class="text-dark">Choose from a preset</strong></label>
             <select class="form-control w-25 mobile-width" id="preset">
                 <option value="default" selected>None</option>
-                <option value="nerdminer">NerdMiner (45 KH/s)</option>
+                <option value="nerdminer">NerdMiner (55 KH/s)</option>
                 <option value="u2plus">Antminer U2+ (2 GH/s)</option>
-                <option value="marslander">Mars Lander (300 GH/s)</option>
+                <option value="marslander">"Mars Lander" (300 GH/s)</option>
                 <option value="t2turbo">Innosilicon T2T  (24 TH/s)</option>
                 <option value="s9">Antminer S9 (13.5 TH/s)</option>
                 <option value="s19plus">Antminer S19 Plus (99 TH/s)</option>
                 <option value="s19pro">Antminer S19 Pro (110 TH/s)</option>
+                <option value="s21">Antminer S21 (200 TH/s)</option>
+                <option value="s21hyd">Antminer S21 Hydro (335 TH/s)</option>
             </select>
         </div>
 
@@ -237,7 +239,9 @@
             's9': [4, 13.5],
             't2turbo': [4, 24],
             's19plus': [4, 99],
-            's19pro': [4, 110]
+            's19pro': [4, 110],
+            's21': [4, 200],
+            's21hyd': [4, 335]
         };
 
         var hashrate = 0;
