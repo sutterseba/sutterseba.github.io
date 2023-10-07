@@ -110,7 +110,7 @@
                     <td class="peryear-target2 result"></td>
                 </tr>
                 <tr id="liferow">
-                    <th scope="row">Custom</th>
+                    <th scope="row">Custom time horizon</th>
                     <td class="perlife-target1 result"></td>
                     <td class="perlife-target2 result"></td>
                 </tr>
@@ -159,7 +159,7 @@
             </tbody>
             <thead class="thead-dark">
                 <tr>
-                    <th>Custom</th>
+                    <th>Custom time horizon</th>
                 </tr>
             </thead>
             <tbody id="lifesection" class="text-dark">
@@ -231,7 +231,7 @@
         };
         
         const presetData = {
-            'nerdminer': [1, 45],
+            'nerdminer': [1, 55],
             'u2plus': [3, 2],
             'marslander': [3, 300],
             's9': [4, 13.5],
@@ -391,7 +391,7 @@
         }
 
         function formatNumber (n) {
-            return n < 0.0001 ? n.toExponential(4) + ' %' : n.toFixed(4) + ' %';
+            return n < 0.0001 ? n.toExponential(2) + ' %' : n.toFixed(4) + ' %';
         }
 
         function withDelimiters (n) {
