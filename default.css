@@ -17,13 +17,9 @@ h1 {
 }
 
 a {
-    color: #00ff91;
+    color: #00ffea;
     text-decoration: none;
     font-weight: bold;
-}
-
-#checksum {
-    color: #ff6600;
 }
 
 a:hover {
@@ -39,4 +35,24 @@ footer {
     background-color: #000000;
     text-align: center;
     font-size: .85em;  
+}
+
+.btn {
+    color: white;
+    background: transparent;
+    border: .15em solid white;
+    font-family: monospace;
+    font-weight: bold;
+    line-height: 1.1em;
+    padding: .75em .75em;
+    margin-top: 3em;
+    cursor: pointer;
+    width: 13em;
+}
+
+.btn:hover {
+    color: black;
+    background-color: #00ffea;
+    border-color: #00ffea;
+    transition: all .3s ease-in-out;
 }
