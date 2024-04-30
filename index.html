@@ -1,37 +1,41 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>sutterseba.de</title>
-        <meta name="title" content="sutterseba.de">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#000000">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel="stylesheet" href="default.css">
-        <!--FAVICON-->
-        <link rel="apple-touch-icon" sizes="180x180" href="pics/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="pics/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="pics/favicon-16x16.png">
-        <link rel="manifest" href="pics/site.webmanifest">
-    </head>
-    <body>
-        <img src="pics/logo.jpg" width="10%">
+<html lang="en">
+<head>
+    <title>sutterseba.de</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sebastian Sutter">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal landing page">
+    <meta property="og:title" content="sutterseba.de">
+    <meta property="og:type" content="Personal landing page">
+    <meta property="og:image" content="https://sutterseba.de/assets/ogp.png">
+    <meta name="theme-color" content="#202327">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+    <link rel="preload" as="font" type="font/ttf" href="assets/fonts/roboto-mono.ttf">
+    <link rel="preload" as="font" type="font/ttf" href="assets/fonts/roboto-medium.ttf">
+</head>
+<body>
+    <header>
+        <img width="128px" height="128px" src="assets/logo.png">
         <h1>@sutterseba</h1>
-        <div>
-            <p>Hey there, I'm Sebastian, a cybersecurity student from Germany.<br>If you want to reach out, feel free to do so at <a target="_blank" href="mailto:hi@sutterseba.de">hi@sutterseba.de</a>.</p>
-            <p>You can also find me on <a href="https://x.com/sutterseba" target="_blank">Twitter</a>, or 𝕏, as some people like to call it these days, and <a href="https://github.com/sutterseba" target="_blank">GitHub</a>.</p>
-            <p>Cheers!</p>
-        </div>
-
-        <div id="buttons">
-            <button class="btn" onclick="window.open('./mnemonic-checksum', '_blank')">Mnemonic Checksum<br>Calculator</button>
-            <button class="btn" onclick="window.open('./solomining-calculator', '_blank')">Solo Mining<br>Calculator</button>
-        </div>
-            
-        <footer>
-            PGP: E5EE A47D DE3A B503 EB3F E162 0391 1542 7D6B 6715 | <a target="_blank" href="https://getalby.com/sutterseba">↯ sats@sutterseba.de</a>
-        </footer>
-    </body>
+    </header>
+    <main>
+        <p>Hey, I'm Sebastian, a 20-ish years old cybersecurity student from Germany. If you want to reach out, feel free to poke me at <a class="link" href="mailto:mail@sutterseba.de">mail@sutterseba.de</a>.</p>
+        <p>You can also find me on <a class="link" href="https://twitter.com/sutterseba/" target="_blank">Twitter</a> and <a class="link" href="https://github.com/sutterseba/" target="_blank">GitHub</a>.</p>
+        <section id="nav">
+            <a class="button" href="/solo-mining-calculator/">Mining Calculator</a><br>
+            <a class="button" href="/mnemonic-checksum/">Checksum Calculator</a><br>
+            <a class="button" href="https://mempool.blocktrainer.de">Mempool</a><br>
+        </section>
+    </main>
+    <footer>
+        <a class="link" href="/sutterseba.asc" target="_blank">PGP</a> | <a class="link" href="https://getalby.com/sutterseba/" target="_blank">sats@sutterseba.de</a>
+    </footer>
+</body>
 </html>
